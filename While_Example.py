@@ -2,7 +2,8 @@ a = 10
 b = 5
 index = 0
 while True:
-    index = int(input("what example do you want to run"))
+    index = int(input("what example do you want to run? (0 ends the program)\n"))
+    print("\n")
 
 # Normal while loop
     if index == 1:
@@ -41,7 +42,7 @@ while True:
         print(greeting[::-1])
 #
     elif index == 4:
-        text = "a nut for a jar of tuna"
+        text = input("Type a palindrome without punctuation")
         text = text.replace(" ", "")
         print(text)
 
