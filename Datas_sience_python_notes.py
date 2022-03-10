@@ -136,6 +136,90 @@ while True:
 
         print(set_A ^ set_B)
 
+
+# String methods
+    elif index == 8:
+        s = "hello world my name is john"
+        print(s)
+        print(s.capitalize())
+        print(s.center(40))
+        print(s.count(" "))
+        print(s.replace(" ", "!!"))
+        print(s.split())
+
+    elif index == 9:
+        s = "http://google.com and then there could be http://yahoo.com or even a website like http://bbc.co.uk"
+        start = 0
+        while True:
+            start = s.find("http://", start)
+            if start == -1:
+                break
+            end = s.find(" ", start)
+            if end == -1:
+                print(s[start:])
+                break
+
+            print(s[start:end])
+            start = end
+
+# f string
+    elif index == 10:
+        # old way/normal string
+        print("1 + 2", 1+2)
+        # New way
+        print(f"1 + 2 = {1+2}")
+        a = 3
+        b = 7
+        name = input("what is your name")
+        print(f"Dear {name.capitalize()}, 1+2 = {b**a}")
+    # Files
+    elif index == 11:
+        try:
+            filename = "text.txt"
+            fp = open(filename, "r")  # second argument default is open for reading
+            print(fp.read())
+            print()
+            fp.close()
+        except FileNotFoundError:
+            print("No such file or directory: 'text.txt'")
+
+            with open("filename", "a") as fp:
+                for line in fp:
+                    print(f"Line: {line}")
+                    # at the end, the file will be closed automatically
+
+    elif index == 12:
+        filename = "example.txt"
+        palindrome_file = "palindromes.txt"
+        non_palindrome_file = "non_palindromes.txt"
+        punctuation = " .,?!'"
+
+        open(palindrome_file, "w")
+        open(non_palindrome_file, "w")
+
+        with open(filename) as fp:
+            # 2 read line by line
+            for line in fp:
+                # save original line
+                orig_line = line.rstrip()
+                # need to sanitize the line by removing punctuation
+                line = line.lower()
+                for p in punctuation:
+                    line = line.replace(p, "")
+                print(line)
+                line = line.rstrip()  # this removes the enter at the end
+                # check if palindrome
+                if line == line[::-1]:
+                    print(f"{orig_line} is a palindrome")
+                    with open(palindrome_file, "a") as palindrome_fp:
+                        palindrome_fp.write(f"{orig_line}\n")
+                else:
+
+                    print(f"{line} is not a palindrome")
+                    with open(non_palindrome_file, "a") as non_palindrome_fp:
+                        non_palindrome_fp.write(f"{orig_line}\n")
+                # line = line.replace([i for i in punctuation], "")
+
 # end of examples
     elif index == 0:
         print("see you later")
