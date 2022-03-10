@@ -7,13 +7,14 @@ while True:
 # Normal while loop
     if index == 1:
         while a > b:
-            print("the first one is greater")
+            print("a is greater")
+            print("b = ", b)
             b += 1
 
 # While True Loop
     elif index == 2:
-        add = 0
 
+        add = 0
         while True:
             number = int(input("give me a number to add to the running sum (0 to stop)"))
             add += number
@@ -37,6 +38,7 @@ while True:
 # string/list selection
         # 1 through 6
         print("1 through 6")
+        # python is a base 0 language so the h in "hello" is 0 and the ending index will not be included
         print(greeting[1:6], "\n")
 
         # 1 through end of string
@@ -72,16 +74,16 @@ while True:
 
         except ValueError:
             print("Hey, that is not a number!! \n")
-
+            print("type 5 to try again you typed a string!\n")
         except ZeroDivisionError:
             print("Hey, you are dividing by zero!! \n")
-
+            print("type 5 to try again you divided by zero\n")
         finally:
-            print("type 5 to try again\n")
             print("This will print no matter what the code above is, even if there is an error\n")
 
 # list comprehension
     elif index == 6:
+        # lists use brackets
         numbers = [2, 6, 7]
 
         my_squares = [i ** 2 for i in numbers]
@@ -103,7 +105,8 @@ while True:
         try:
             myset = {3.14, 2, "hello", [1, 2, 3]}
         except TypeError:
-            print("in myset = {3.14, 2, ""hello"", [1, 2, 3]} dictionaries cannot print hashable objects, so a tuple won't print\n")
+            print("in myset = {3.14, 2, ""hello"", [1, 2, 3]} dictionaries "
+                  "cannot print hashable objects, so a tuple won't print\n")
 
         # dictionaries cannot print hashable objects, so a tuple won't print
         # print(myset_2)
