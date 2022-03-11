@@ -19,7 +19,7 @@ def get_unique_words():
 books = {
 }
 
-for local_name in range(9, 1000):
+for local_name in range(9, 12):
     print(local_name)
     with open(str(local_name), "w") as local_fp:
         try:
@@ -27,9 +27,10 @@ for local_name in range(9, 1000):
                 for line in fp:
                     line = line.decode().replace("\n", "")
                     local_fp.write(line)
-
-                    if str(line[0:2]) == "The Project Gutenberg":
-                        print("hello")
+                    line = str(line)
+                    if line.find("<title>", 0) != -1:
+                        title = line
+                        print(title)
         except:
             print("error")
             continue
