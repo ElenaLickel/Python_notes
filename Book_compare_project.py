@@ -16,10 +16,9 @@ def get_unique_words():
                 word_count += 1
     return unique_words, word_count
 
-books = {
-}
+books = {}
 
-for local_name in range(9, 12):
+for local_name in range(9, 20):
     print(local_name)
     with open(str(local_name), "w") as local_fp:
         try:
@@ -30,36 +29,34 @@ for local_name in range(9, 12):
                     local_fp.write(line)
                     line = str(line)
                     if line.find("<title>", 0) != -1:
-                        title = line.strip("<title>")
-
+                        title = line.strip("<title>The Project Gutenberg e")
                         print(title)
         except:
-            print("error")
+            # print("error")
             continue
 
-    #save_locally()
+    # save_locally()
     unique_count = []
     unique_7 =[]
     unique_words, word_count = get_unique_words()
     most_frequent = list(unique_words.values())
     most_frequent.sort(reverse=True)
-    print(most_frequent[:5])
+    # print(most_frequent[:5])
 
     unique_count = len(unique_words.keys())
 
-    print(unique_count)
+    # print(unique_count)
 
     for o in unique_words.keys():
         if len(o) >= 7:
             unique_7.append(o)
+
     unique_7 = len(unique_7)
     unique_ratio = unique_count/word_count
-    print(f"word count {word_count}, unique_7 {unique_7},unique_ratio {unique_ratio}")
-
-    #books.keys[str(local_name-9)] = title
+    # print(f"word count {word_count}, unique_7 {unique_7},unique_ratio {unique_ratio}")
     books[title] = [url, word_count, unique_count, unique_7, unique_ratio]
+
 print(books)
-
-
-#for word in most_frequent[0:10]:
-    #for unique_word, value in unique_words.items():
+print(books.keys())
+# for word in most_frequent[0:10]:
+# for unique_word, value in unique_words.items():
