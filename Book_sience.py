@@ -23,7 +23,7 @@ def get_unique_words():
 #save_locally()
 unique_words= get_unique_words()
 most_frequent = list(unique_words.values())
-most_frequent.sort(reverse = True)
+most_frequent.sort(reverse=True)
 print(most_frequent)
 for word in most_frequent[0:10]:
     for unique_word, value in unique_words.items():
