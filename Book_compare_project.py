@@ -18,7 +18,8 @@ def get_unique_words():
 
 books = {}
 
-for local_name in range(9, 20):
+for local_name in range(9, 100):
+    title = f"no title {local_name}"
     print(local_name)
     with open(str(local_name), "w") as local_fp:
         try:
@@ -37,9 +38,10 @@ for local_name in range(9, 20):
     # save_locally()
     unique_7 =[]
     unique_words, word_count = get_unique_words()
-    most_frequent = list(unique_words.values())
-    most_frequent.sort(reverse=True)
-    print(most_frequent[:5])
+
+    # most_frequent = list(unique_words.values())
+    # most_frequent.sort(reverse=True)
+    # print(most_frequent[:5])
 
     unique_count = len(unique_words.keys())
 
@@ -51,6 +53,7 @@ for local_name in range(9, 20):
 
     unique_7 = len(unique_7)
     unique_ratio = unique_count/word_count
+
     # print(f"word count {word_count}, unique_7 {unique_7},unique_ratio {unique_ratio}")
     books[title] = [url, word_count, unique_count, unique_7, unique_ratio]
 

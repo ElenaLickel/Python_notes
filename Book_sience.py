@@ -1,6 +1,6 @@
 from urllib.request import urlopen
 
-url = "https://www.gutenberg.org/files/84/84-0.txt"
+url = "https://www.gutenberg.org/files/14/14-0.txt"
 local_name = "frankenstein.txt"
 with open(local_name, "w") as local_fp:
     with urlopen(url) as fp:
