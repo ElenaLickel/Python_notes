@@ -23,13 +23,15 @@ for local_name in range(9, 12):
     print(local_name)
     with open(str(local_name), "w") as local_fp:
         try:
-            with urlopen(f"https://www.gutenberg.org/files/{local_name}/{local_name}-h/{local_name}-h.htm") as fp:
+            url = f"https://www.gutenberg.org/files/{local_name}/{local_name}-h/{local_name}-h.htm"
+            with urlopen(url) as fp:
                 for line in fp:
                     line = line.decode().replace("\n", "")
                     local_fp.write(line)
                     line = str(line)
                     if line.find("<title>", 0) != -1:
-                        title = line
+                        title = line.strip("<title>")
+
                         print(title)
         except:
             print("error")
@@ -43,20 +45,21 @@ for local_name in range(9, 12):
     most_frequent.sort(reverse=True)
     print(most_frequent[:5])
 
-    unique_count.append(len(unique_words.keys()))
+    unique_count = len(unique_words.keys())
 
     print(unique_count)
 
-    for i in unique_words.keys():
-        if len(i) >= 7:
-            unique_7.append(i)
+    for o in unique_words.keys():
+        if len(o) >= 7:
+            unique_7.append(o)
     unique_7 = len(unique_7)
-    print(unique_7)
+    unique_ratio = unique_count/word_count
+    print(f"word count {word_count}, unique_7 {unique_7},unique_ratio {unique_ratio}")
 
-    print(unique_count[0]/word_count)
+    #books.keys[str(local_name-9)] = title
+    books[title] = [url, word_count, unique_count, unique_7, unique_ratio]
+print(books)
 
 
 #for word in most_frequent[0:10]:
     #for unique_word, value in unique_words.items():
-
-
