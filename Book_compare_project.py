@@ -22,26 +22,24 @@ for local_name in range(9, 20):
     print(local_name)
     with open(str(local_name), "w") as local_fp:
         try:
-            url = f"https://www.gutenberg.org/files/{local_name}/{local_name}-h/{local_name}-h.htm"
+            url = f"https://www.gutenberg.org/files/{local_name}/{local_name}-0.txt"
             with urlopen(url) as fp:
                 for line in fp:
                     line = line.decode().replace("\n", "")
                     local_fp.write(line)
-                    line = str(line)
-                    if line.find("<title>", 0) != -1:
-                        title = line.strip("<title>The Project Gutenberg e")
+                    if line.find("The Project Gutenberg e", 0) != -1:
+                        title = line[len("The Project Gutenberg ebook of "):].strip(" ")
                         print(title)
         except:
             # print("error")
             continue
 
     # save_locally()
-    unique_count = []
     unique_7 =[]
     unique_words, word_count = get_unique_words()
     most_frequent = list(unique_words.values())
     most_frequent.sort(reverse=True)
-    # print(most_frequent[:5])
+    print(most_frequent[:5])
 
     unique_count = len(unique_words.keys())
 
