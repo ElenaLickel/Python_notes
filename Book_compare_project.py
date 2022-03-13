@@ -17,7 +17,7 @@ def get_unique_words():
 
 books = {}
 
-for local_name in range(9, 100):
+for local_name in range(9, 15):
     title = f"no title {local_name}"
     print(local_name)
     with open(str(local_name), "w") as local_fp:
@@ -30,26 +30,17 @@ for local_name in range(9, 100):
                     if line.find("The Project Gutenberg e", 0) != -1:
                         title = line[len("The Project Gutenberg ebook of "):].strip(" ")
                         print(title)
+
         except:
-            # print("error")
             continue
 
-    # save_locally()
-    unique_7 =[]
     unique_words, word_count = get_unique_words()
-
-    # most_frequent = list(unique_words.values())
-    # most_frequent.sort(reverse=True)
-    # print(most_frequent[:5])
-
     unique_count = len(unique_words.keys())
 
-    # print(unique_count)
-
+    unique_7 =[]
     for o in unique_words.keys():
         if len(o) >= 7:
             unique_7.append(o)
-
     unique_7 = len(unique_7)
     unique_ratio = unique_count/word_count
 
@@ -58,6 +49,3 @@ for local_name in range(9, 100):
 
 print(books)
 print(books.keys())
-# for word in most_frequent[0:10]:
-# for unique_word, value in unique_words.items():
-#Elena cloned this
