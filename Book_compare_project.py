@@ -19,6 +19,7 @@ books = {}
 
 for local_name in range(9, 15):
     title = f"no title {local_name}"
+    author = f'no author mentioned {local_name}'
     print(local_name)
     with open(str(local_name), "w") as local_fp:
         try:
@@ -30,6 +31,9 @@ for local_name in range(9, 15):
                     if line.find("The Project Gutenberg e", 0) != -1:
                         title = line[len("The Project Gutenberg ebook of "):].strip(" ")
                         print(title)
+                        if line.find("by", 0) != -1:
+                            author = line[line.find('by'):]
+                            print(author)
 
         except:
             continue
@@ -45,7 +49,7 @@ for local_name in range(9, 15):
     unique_ratio = unique_count/word_count
 
     # print(f"word count {word_count}, unique_7 {unique_7},unique_ratio {unique_ratio}")
-    books[title] = [url, word_count, unique_count, unique_7, unique_ratio]
+    books[title] = [url, author, word_count, unique_count, unique_7, unique_ratio]
 
 print(books)
 print(books.keys())
