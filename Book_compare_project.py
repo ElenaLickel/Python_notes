@@ -30,10 +30,11 @@ for local_name in range(9, 15):
                     local_fp.write(line)
                     if line.find("The Project Gutenberg e", 0) != -1:
                         title = line[len("The Project Gutenberg ebook of "):].strip(" ")
-                        print(title)
                         if line.find("by", 0) != -1:
                             author = line[line.find('by'):]
-                            print(author)
+                            print(f'author: {author}')
+                        title = title.strip(author).strip(',')
+                        print(f'title: {title}')
 
         except:
             continue
