@@ -8,16 +8,19 @@ def get_unique_words():
         for line in fp:
             # remove punctuation
             for p in punctuation:
-                line.replace(p, " ")
+                line = line.replace(p, " ")
             line = line.lower()
             for word in line.split():
                 unique_words[word] = unique_words.get(word, 0) + 1
                 word_count += 1
+
     return unique_words, word_count
 
 books = {}
 
-for local_name in range(9, 15):
+num_books = int(input('how many books do you want to include in your analysis?'))
+
+for local_name in range(9, num_books):
     title = f"no title {local_name}"
     author = f'no author mentioned {local_name}'
     print(local_name)
@@ -31,7 +34,7 @@ for local_name in range(9, 15):
                     if line.find("The Project Gutenberg e", 0) != -1:
                         title = line[len("The Project Gutenberg ebook of "):].strip(" ")
                         if line.find("by", 0) != -1:
-                            author = line[line.find('by'):]
+                            author = str(line[line.find('by'):])
                             print(f'author: {author}')
                         title = title.strip(author).strip(',')
                         print(f'title: {title}')
@@ -52,5 +55,19 @@ for local_name in range(9, 15):
     # print(f"word count {word_count}, unique_7 {unique_7},unique_ratio {unique_ratio}")
     books[title] = [url, author, word_count, unique_count, unique_7, unique_ratio]
 
+
+#compare books
+
+print('\nlets compare 2 specific books: ')
 print(books)
-print(books.keys())
+book1 = input('which should be book 1?')
+book2 = input('which should be book 2?')
+
+print(books[book1])
+print(books[book2])
+
+print('The first book was written by', books[book1][1],'and the second one by', books[book2][1], '.')
+print('The first book has', books[book1][2], 'words, \nwhile the second book has', books[book2][2], 'words.')
+print('The first book has', books[book1][3], 'unique words, \nwhile the second book has', books[book2][3], 'unique words.')
+print('The first book has', books[book1][4], 'unique words with more than 7 letters, \nwhile the second book has', books[book2][4], 'unique words with more than 7 letters.')
+print('The first book has unique words ratio of', books[book1][5], ', \nwhile the second book has unique words ratio of', books[book2][5], '.')
