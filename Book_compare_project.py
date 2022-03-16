@@ -17,11 +17,12 @@ def get_unique_words():
     return unique_words, word_count
 
 books = {}
-for local_name in range(10, 50):
+num_books = int(input('how many book files do you want to include in your analysis'))
+for local_name in range(10, num_books+10):
     title = f"no title {local_name}"
     author = f"no author"
     start_book = False
-    print(local_name)
+    print(local_name-9)
     with open(str(local_name), "w") as local_fp:
         try:
             url = f"https://www.gutenberg.org/files/{local_name}/{local_name}-0.txt"
@@ -65,7 +66,7 @@ for local_name in range(10, 50):
     books[title] = [url, author, word_count, unique_count, unique_7, unique_ratio]
 
 
-print(f"we found {len(books.keys())} books in our search, here are the titles")
+print(f"We found {len(books.keys())} books in our search, here are the titles")
 n = 0
 for i in books.keys():
     n = n + 1
@@ -74,8 +75,8 @@ for i in books.keys():
 print('\nlets compare 2 specific books: ')
 while True:
     try:
-        book1 = list(books.keys())[int(input('pick book 1 by its rank'))-1]
-        book2 = list(books.keys())[int(input('pick book 2 by its rank'))-1]
+        book1 = list(books.keys())[int(input('pick book 1 by its rank '))-1]
+        book2 = list(books.keys())[int(input('pick book 2 by its rank '))-1]
         break
     except ValueError:
         print(f"\nPlease write an integer between 1 and {len(books.keys())}!!!\n")
@@ -84,6 +85,7 @@ while True:
         print(f"\nPlease write an integer between 1 and {len(books.keys())}!!!\n")
         continue
 
+print(f"\nyou are comparing {book1} and {book2}\n")
 print('The first book was written by', books[book1][1], 'and the second one by', books[book2][1], '.\n')
 print('The first book has', books[book1][2], 'words, \nwhile the second book has', books[book2][2], 'words.\n')
 print('The first book has', books[book1][3], 'unique words, \nwhile the second book has', books[book2][3], 'unique words.\n')
