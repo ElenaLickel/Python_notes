@@ -60,7 +60,7 @@ for local_name in range(9, 15):
 #compare books
 
 print('\nlets compare 2 specific books: ')
-print(books)
+
 book1 = input('which should be book 1?')
 book2 = input('which should be book 2?')
 
