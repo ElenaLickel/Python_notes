@@ -60,6 +60,11 @@ for local_name in range(9, 15):
     # print(f"word count {word_count}, unique_7 {unique_7},unique_ratio {unique_ratio}")
     books[title] = [url, author, word_count, unique_count, unique_7, unique_ratio]
 
+print(f"we found {len(books.keys())} books in our search, here are the titles")
+n=0
+for i in books.keys():
+    n = n+1
+    print(f"{n}: {i}")
 
 #compare books
 
