@@ -17,9 +17,9 @@ def get_unique_words():
     return unique_words, word_count
 
 books = {}
-for local_name in range(9, 50):
+for local_name in range(10, 50):
     title = f"no title {local_name}"
-    author = f"no author {local_name}"
+    author = f"no author"
     start_book = False
     print(local_name)
     with open(str(local_name), "w") as local_fp:
@@ -38,9 +38,9 @@ for local_name in range(9, 50):
                         print(title)
                     elif line.find("Author: ", 0) != -1:
                         author = line[len("Author:"):].strip(", \r")
-                        print(f"By: {author}\n")
+                        print(f"Written by: {author}\n")
         except:
-            # print("error")
+            print("No book found for this index")
             continue
 
     # save_locally()
