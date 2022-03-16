@@ -17,7 +17,7 @@ def get_unique_words():
     return unique_words, word_count
 
 books = {}
-for local_name in range(11, 13):
+for local_name in range(9, 50):
     title = f"no title {local_name}"
     author = f"no author {local_name}"
     start_book = False
@@ -38,7 +38,7 @@ for local_name in range(11, 13):
                         print(title)
                     elif line.find("Author: ", 0) != -1:
                         author = line[len("Author:"):].strip(", \r")
-                        print(author)
+                        print(f"By: {author}\n")
         except:
             # print("error")
             continue
@@ -62,27 +62,32 @@ for local_name in range(11, 13):
     unique_7 = len(unique_7)
     unique_ratio = unique_count/word_count
 
-    # print(f"word count {word_count}, unique_7 {unique_7},unique_ratio {unique_ratio}")
     books[title] = [url, author, word_count, unique_count, unique_7, unique_ratio]
 
 
 print(f"we found {len(books.keys())} books in our search, here are the titles")
 n = 0
 for i in books.keys():
+    n = n + 1
     print(f"{n}: {i}")
-    n = n+1
-
 
 print('\nlets compare 2 specific books: ')
+while True:
+    try:
+        book1 = list(books.keys())[int(input('pick book 1 by its rank'))-1]
+        book2 = list(books.keys())[int(input('pick book 2 by its rank'))-1]
+        break
+    except ValueError:
+        print(f"\nPlease write an integer between 1 and {len(books.keys())}!!!\n")
+        continue
+    except IndexError:
+        print(f"\nPlease write an integer between 1 and {len(books.keys())}!!!\n")
+        continue
 
-book1 = list(books.keys())[int(input('which should be book 1?'))]
-book2 = list(books.keys())[int(input('which should be book 2?'))]
-
-print('The first book was written by', books[book1][1], 'and the second one by', books[book2][1], '.')
-print('The first book has', books[book1][2], 'words, \nwhile the second book has', books[book2][2], 'words.')
-print('The first book has', books[book1][3], 'unique words, \nwhile the second book has', books[book2][3], 'unique words.')
-print('The first book has', books[book1][4], 'unique words with more than 7 letters, \nwhile the second book has', books[book2][4], 'unique words with more than 7 letters.')
-print('The first book has unique words ratio of', books[book1][5], ', \nwhile the second book has unique words ratio of', books[book2][5], '.')
-
+print('The first book was written by', books[book1][1], 'and the second one by', books[book2][1], '.\n')
+print('The first book has', books[book1][2], 'words, \nwhile the second book has', books[book2][2], 'words.\n')
+print('The first book has', books[book1][3], 'unique words, \nwhile the second book has', books[book2][3], 'unique words.\n')
+print('The first book has', books[book1][4], 'unique words with more than 7 letters, \nwhile the second book has', books[book2][4], 'unique words with more than 7 letters.\n')
+print('The first book has unique words ratio of', books[book1][5], ', \nwhile the second book has unique words ratio of', books[book2][5], '.\n')
 
 # for word in most_frequent[0:10]:
