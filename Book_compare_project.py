@@ -1,14 +1,14 @@
 from urllib.request import urlopen
 
 def get_unique_words():
-    punctuation = ",.?!-+"
+    punctuation = ",.?!-"
     unique_words = {}
     word_count = 0
     with open(str(local_name)) as fp:
         for line in fp:
             # remove punctuation
             for p in punctuation:
-                line.replace(p, " ")
+                line = line.replace(p, " ")
             line = line.lower()
             for word in line.split():
                 unique_words[word] = unique_words.get(word, 0) + 1
@@ -16,8 +16,7 @@ def get_unique_words():
     return unique_words, word_count
 
 books = {}
-
-for local_name in range(9, 100):
+for local_name in range(9, 20):
     title = f"no title {local_name}"
     print(local_name)
     with open(str(local_name), "w") as local_fp:
@@ -27,9 +26,12 @@ for local_name in range(9, 100):
                 for line in fp:
                     line = line.decode().replace("\n", "")
                     local_fp.write(line)
-                    if line.find("The Project Gutenberg e", 0) != -1:
-                        title = line[len("The Project Gutenberg ebook of "):].strip(" ")
+                    if line.find("Title: ", 0) != -1:
+                        title = line[len("Title:"):].strip(" ")
                         print(title)
+                    if line.find("Author: ", 0) != -1:
+                        author = line[len("Author:"):].strip(" ")
+                        print(author)
         except:
             # print("error")
             continue
