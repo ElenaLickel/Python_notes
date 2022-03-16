@@ -1,5 +1,6 @@
 from urllib.request import urlopen
 
+
 def get_unique_words():
     punctuation = ",.?!-+"
     unique_words = {}
@@ -20,7 +21,7 @@ books = {}
 
 num_books = int(input('how many books do you want to include in your analysis?'))
 
-for local_name in range(9, num_books):
+for local_name in range(9, 15):
     title = f"no title {local_name}"
     author = f'no author mentioned {local_name}'
     print(local_name)
@@ -29,12 +30,12 @@ for local_name in range(9, num_books):
             url = f"https://www.gutenberg.org/files/{local_name}/{local_name}-0.txt"
             with urlopen(url) as fp:
                 for line in fp:
-                    line = line.decode().replace("\n", "")
+                    line = line.decode('utf-8-sig').replace("\n", "")
                     local_fp.write(line)
                     if line.find("The Project Gutenberg e", 0) != -1:
                         title = line[len("The Project Gutenberg ebook of "):].strip(" ")
                         if line.find("by", 0) != -1:
-                            author = str(line[line.find('by'):])
+                            author = line[line.find('by'):]
                             print(f'author: {author}')
                         title = title.strip(author).strip(',')
                         print(f'title: {title}')
