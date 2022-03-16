@@ -25,6 +25,7 @@ for local_name in range(9, 15):
     title = f"no title {local_name}"
     author = f'no author mentioned {local_name}'
     print(local_name)
+    start_book = False
     with open(str(local_name), "w") as local_fp:
         try:
             url = f"https://www.gutenberg.org/files/{local_name}/{local_name}-0.txt"
@@ -32,13 +33,16 @@ for local_name in range(9, 15):
                 for line in fp:
                     line = line.decode('utf-8-sig').replace("\n", "")
                     local_fp.write(line)
-                    if line.find("The Project Gutenberg e", 0) != -1:
-                        title = line[len("The Project Gutenberg ebook of "):].strip(" ")
-                        if line.find("by", 0) != -1:
-                            author = line[line.find('by'):]
-                            print(f'author: {author}')
-                        title = title.strip(author).strip(',')
-                        print(f'title: {title}')
+                    if start_book:
+                        continue
+                    elif line.find("*", 0) != -1:
+                        start_book = True
+                    elif line.find("Title: ", 0) != -1:
+                        title = line[len("Title:"):].strip(" ")
+                        print(title)
+                    elif line.find("Author: ", 0) != -1:
+                        author = line[len("Author:"):].strip(" ")
+                        print(author)
 
         except:
             continue
@@ -62,7 +66,9 @@ for local_name in range(9, 15):
 print('\nlets compare 2 specific books: ')
 
 book1 = input('which should be book 1?')
+book1 = f'{book1}\r'
 book2 = input('which should be book 2?')
+book2 = f'{book2}\r'
 
 print(books[book1])
 print(books[book2])
