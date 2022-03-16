@@ -1,6 +1,7 @@
 from urllib.request import urlopen
 
 def get_unique_words():
+
     punctuation = ",.?!-"
     unique_words = {}
     word_count = 0
