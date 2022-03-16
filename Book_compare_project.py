@@ -38,10 +38,10 @@ for local_name in range(9, 15):
                     elif line.find("*", 0) != -1:
                         start_book = True
                     elif line.find("Title: ", 0) != -1:
-                        title = line[len("Title:"):].strip(" ")
+                        title = line[len("Title:"):].strip(" \r")
                         print(title)
                     elif line.find("Author: ", 0) != -1:
-                        author = line[len("Author:"):].strip(" ")
+                        author = line[len("Author:"):].strip(" \r")
                         print(author)
 
         except:
@@ -60,7 +60,7 @@ for local_name in range(9, 15):
     # print(f"word count {word_count}, unique_7 {unique_7},unique_ratio {unique_ratio}")
     books[title] = [url, author, word_count, unique_count, unique_7, unique_ratio]
 
-print(f"we found {len(books.keys())} books in our search, here are the titles")
+print(f"\nwe found {len(books.keys())} books in our search, here are the titles\n")
 n=0
 for i in books.keys():
     n = n+1
@@ -71,15 +71,13 @@ for i in books.keys():
 print('\nlets compare 2 specific books: ')
 
 book1 = input('which should be book 1?')
-book1 = f'{book1}\r'
 book2 = input('which should be book 2?')
-book2 = f'{book2}\r'
 
 print(books[book1])
 print(books[book2])
 
-print('The first book was written by', books[book1][1],'and the second one by', books[book2][1], '.')
+print('\nThe first book was written by', books[book1][1],'and the second one by', books[book2][1], '.')
 print('The first book has', books[book1][2], 'words, \nwhile the second book has', books[book2][2], 'words.')
 print('The first book has', books[book1][3], 'unique words, \nwhile the second book has', books[book2][3], 'unique words.')
 print('The first book has', books[book1][4], 'unique words with more than 7 letters, \nwhile the second book has', books[book2][4], 'unique words with more than 7 letters.')
-print('The first book has unique words ratio of', books[book1][5], ', \nwhile the second book has unique words ratio of', books[book2][5], '.')
+print('The first book has unique words ratio of',books[book1][5],',\nwhile the second book has unique words ratio of',books[book2][5],'.')
