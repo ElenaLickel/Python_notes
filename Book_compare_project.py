@@ -18,6 +18,7 @@ def get_unique_words():
 books = {}
 for local_name in range(9, 20):
     title = f"no title {local_name}"
+    start_book = False
     print(local_name)
     with open(str(local_name), "w") as local_fp:
         try:
@@ -26,6 +27,10 @@ for local_name in range(9, 20):
                 for line in fp:
                     line = line.decode().replace("\n", "")
                     local_fp.write(line)
+                    if start_book:
+                        continue
+                    if line.find("***", 0) != -1:
+                        start_book = True
                     if line.find("Title: ", 0) != -1:
                         title = line[len("Title:"):].strip(" ")
                         print(title)
